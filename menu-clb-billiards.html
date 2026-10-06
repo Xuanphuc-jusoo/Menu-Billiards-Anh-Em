@@ -1,1 +1,689 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Menu · CLB Billiards Anh Em</title>
+<meta name="description" content="Thực đơn và bảng giá CLB Billiards Anh Em.">
+<meta name="theme-color" content="#0a1310">
+<meta property="og:title" content="Menu · CLB Billiards Anh Em">
+<meta property="og:description" content="Thực đơn & bảng giá — CLB Billiards Anh Em">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230a1310' stroke='%23c9a45c' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='15' fill='%23f3ece0'/%3E%3Ctext x='32' y='37.5' text-anchor='middle' font-family='Georgia,serif' font-size='15' font-weight='700' fill='%230a1310'%3EAE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap&subset=vietnamese" rel="stylesheet">
 
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0a1310;
+    --felt: #10302a;
+    --felt-deep: #0b201b;
+    --card: rgba(255, 255, 255, 0.025);
+    --gold: #c9a45c;
+    --gold-light: #e8d3a0;
+    --gold-dark: #8a6d33;
+    --ivory: #f3ece0;
+    --muted: #a39d8f;
+    --line: rgba(201, 164, 92, 0.22);
+    --line-soft: rgba(201, 164, 92, 0.12);
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --nav-h: 60px;
+    --maxw: 600px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: lining-nums;
+    overflow-x: hidden;
+  }
+  /* Vân nỉ bàn bi-a phủ toàn trang */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(120% 70% at 50% 0%, #143a31 0%, transparent 60%),
+      var(--bg);
+  }
+
+  a { color: inherit; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    margin: 16px auto 0;
+    max-width: var(--maxw);
+    padding: 0 16px;
+  }
+  .hero-frame {
+    position: relative;
+    padding: 44px 24px 36px;
+    text-align: center;
+    border-radius: 6px;
+    background:
+      radial-gradient(90% 80% at 50% 30%, #1a4a3e 0%, var(--felt) 45%, var(--felt-deep) 100%);
+    box-shadow:
+      0 0 0 1px var(--gold-dark),
+      0 0 0 6px #120c06,
+      0 0 0 7px rgba(201, 164, 92, 0.45),
+      0 24px 60px -20px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    animation: rise 0.9s ease-out both;
+  }
+  /* Góc trang trí như ốp góc bàn */
+  .corner {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.8;
+  }
+  .corner.tl { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+  .corner.tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+  .corner.bl { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; }
+  .corner.br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+  .logo {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 18px;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin: 0 0 6px;
+    padding-left: 0.38em;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(44px, 13vw, 64px);
+    line-height: 1.05;
+    margin: 0;
+    background: linear-gradient(180deg, #f6e7bf 0%, var(--gold) 55%, #9c7a3b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hàng kim cương như mốc ngắm trên băng bàn */
+  .diamonds {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px auto;
+    max-width: 260px;
+  }
+  .diamonds::before,
+  .diamonds::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .diamonds::after { background: linear-gradient(90deg, var(--gold), transparent); }
+  .diamonds i {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+  .diamonds i:nth-child(2) { width: 8px; height: 8px; }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-size: 19px;
+    letter-spacing: 0.04em;
+    color: var(--ivory);
+    margin: 0;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 22px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    color: var(--ivory);
+    text-decoration: none;
+    padding: 7px 13px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.22);
+  }
+  .chip svg { width: 15px; height: 15px; color: var(--gold); flex: none; }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-top: 20px;
+    background: rgba(10, 19, 16, 0.86);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+    backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 7px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-soft);
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+  }
+  .tab:hover { color: var(--ivory); border-color: var(--line); }
+  .tab.active {
+    color: #1a1308;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    border-color: var(--gold);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  main { padding-bottom: 24px; }
+  .section {
+    scroll-margin-top: calc(var(--nav-h) + 8px);
+    padding: 40px 0 8px;
+  }
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .sec-icon {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--gold);
+    border: 1px solid var(--gold-dark);
+    background: radial-gradient(circle at 35% 30%, #1b4338, var(--felt-deep));
+    box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px var(--line);
+  }
+  .sec-icon svg { width: 22px; height: 22px; }
+  .sec-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--ivory);
+  }
+  .sec-sub {
+    margin: 3px 0 0;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Danh sách món kiểu thực đơn nhà hàng */
+  .items {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  .item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .item:last-child { border-bottom: 0; }
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .name {
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ivory);
+  }
+  .tag {
+    flex: none;
+    font-family: var(--sans);
+    align-self: center;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid var(--gold-dark);
+    border-radius: 3px;
+    padding: 2px 6px 1px;
+  }
+  .leader {
+    flex: 1;
+    min-width: 16px;
+    border-bottom: 1px dotted rgba(201, 164, 92, 0.45);
+    transform: translateY(-4px);
+  }
+  .price {
+    flex: none;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--gold-light);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .cur {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gold);
+    margin-left: 2px;
+    vertical-align: 0.35em;
+  }
+  .desc {
+    margin: 3px 0 0;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 85%;
+  }
+
+  /* Bảng giá giờ chơi dạng thẻ */
+  .rates {
+    display: grid;
+    gap: 12px;
+  }
+  .rate {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(135deg, rgba(201, 164, 92, 0.08), transparent 55%),
+      radial-gradient(120% 140% at 0% 0%, #163d33 0%, var(--felt-deep) 70%);
+  }
+  .rate::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 16px;
+    bottom: 16px;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  }
+  .rate-name {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .rate .desc { max-width: none; margin-top: 4px; }
+  .rate-price {
+    flex: none;
+    text-align: right;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--gold-light);
+  }
+  .rate-price .cur { font-size: 12px; }
+  .rate-unit {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .note {
+    margin: 14px 0 0;
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    margin-top: 40px;
+    padding: 40px 16px calc(48px + env(safe-area-inset-bottom));
+    text-align: center;
+    border-top: 1px solid var(--line-soft);
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35));
+  }
+  .footer .logo { width: 60px; height: 60px; margin-bottom: 12px; filter: none; }
+  .footer-brand {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--gold-light);
+    margin: 0;
+  }
+  .info {
+    list-style: none;
+    padding: 0;
+    margin: 22px auto 0;
+    max-width: 360px;
+    display: grid;
+    gap: 12px;
+    text-align: left;
+  }
+  .info li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--ivory);
+  }
+  .info svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+  .info a { text-decoration: none; border-bottom: 1px solid var(--line); }
+  .thanks {
+    margin: 28px 0 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--muted);
+  }
+
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-frame { animation: none; }
+  }
+  @media (min-width: 560px) {
+    .hero { margin-top: 32px; }
+    .hero-frame { padding: 56px 32px 44px; }
+    .sec-title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Bộ biểu tượng dùng chung: cùng nét, cùng màu vàng để toàn menu đồng nhất -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-ball" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="14" cy="10" r="7"/><circle cx="14" cy="10" r="2.6"/><path d="M2.5 21.5l6.2-6.2"/>
+    </symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 9h12v4.5A5.5 5.5 0 0 1 10.5 19h-1A5.5 5.5 0 0 1 4 13.5V9z"/><path d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c-.7.8-.7 1.7 0 2.5M12 3.5c-.7.8-.7 1.7 0 2.5"/><path d="M3 21.5h14"/>
+    </symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5.5 6h13l-1.7 13.3A2 2 0 0 1 14.8 21H9.2a2 2 0 0 1-2-1.7L5.5 6z"/><path d="M6.2 11h11.6"/><path d="M13 6l2.4-4h3"/>
+    </symbol>
+    <symbol id="i-can" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6.5" y="3.5" width="11" height="17.5" rx="2.5"/><path d="M6.5 7.5h11M6.5 17h11"/><path d="M10.5 1.8h3"/>
+    </symbol>
+    <symbol id="i-beer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 8h10v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8z"/><path d="M15 10.5h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/><path d="M5 8a2.5 2.5 0 0 1 1.8-4.2A3 3 0 0 1 12 3.4a2.5 2.5 0 0 1 3 4.6"/><path d="M8.5 12v5.5M11.5 12v5.5"/>
+    </symbol>
+    <symbol id="i-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11.5h18c0 4.7-4 8.5-9 8.5s-9-3.8-9-8.5z"/><path d="M9 21.5h6"/><path d="M13.5 9.5L20 3M10.5 9.5L16 2.5"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9.5h8M8 12.5h5"/>
+    </symbol>
+
+    <!-- Logo: bi số 8 cách điệu với chữ AE -->
+    <radialGradient id="ball-shade" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#2a2f2c"/><stop offset=".55" stop-color="#0d110f"/><stop offset="1" stop-color="#030504"/>
+    </radialGradient>
+    <linearGradient id="gold-ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1dfae"/><stop offset=".5" stop-color="#c9a45c"/><stop offset="1" stop-color="#7d612c"/>
+    </linearGradient>
+    <symbol id="logo" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="56" fill="url(#ball-shade)" stroke="url(#gold-ring)" stroke-width="3"/>
+      <circle cx="60" cy="60" r="49" fill="none" stroke="#c9a45c" stroke-opacity=".35" stroke-width="1"/>
+      <circle cx="60" cy="60" r="27" fill="#f3ece0"/>
+      <circle cx="60" cy="60" r="27" fill="none" stroke="#c9a45c" stroke-width="1.5"/>
+      <text x="60" y="68.5" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-weight="700" font-size="25" fill="#0a1310">AE</text>
+      <ellipse cx="40" cy="30" rx="13" ry="7" fill="#fff" opacity=".13" transform="rotate(-35 40 30)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hero">
+  <div class="hero-frame">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <svg class="logo" role="img" aria-label="Logo CLB Billiards Anh Em"><use href="#logo"/></svg>
+    <p class="eyebrow">Câu lạc bộ Billiards</p>
+    <h1 class="brand" id="brand-name">Anh Em</h1>
+    <div class="diamonds" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="subtitle">Thực Đơn &amp; Bảng Giá</p>
+    <div class="chips" id="chips"></div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Danh mục">
+  <div class="nav-inner" id="nav"></div>
+</nav>
+
+<main class="wrap" id="menu"></main>
+
+<footer class="footer">
+  <svg class="logo" aria-hidden="true"><use href="#logo"/></svg>
+  <p class="footer-brand">CLB Billiards Anh Em</p>
+  <div class="diamonds" aria-hidden="true"><i></i><i></i><i></i></div>
+  <ul class="info" id="info"></ul>
+  <p class="thanks">Cảm ơn quý khách — Hẹn gặp lại anh em!</p>
+</footer>
+
+<script>
+/* =====================================================================
+   SỬA THÔNG TIN QUÁN & GIÁ Ở ĐÂY
+   - price: ghi số, không cần dấu chấm (ví dụ 25000 → hiển thị 25.000đ)
+   - tag:   nhãn nhỏ cạnh tên món, ví dụ "Bán chạy", "Mới" (có thể bỏ)
+   - desc:  mô tả ngắn dưới tên món (có thể bỏ)
+   - Để trống một dòng thông tin quán ("") thì dòng đó sẽ tự ẩn.
+   ===================================================================== */
+const CLUB = {
+  hours:   "08:00 – 24:00",
+  hotline: "0900 000 000",
+  address: "Cập nhật địa chỉ quán",
+  zalo:    "",            // ví dụ: "https://zalo.me/0900000000"
+};
+
+const MENU = [
+  {
+    id: "gio-choi", title: "Giờ Chơi", sub: "Bảng giá bàn", icon: "i-ball", layout: "rates",
+    note: "Tính tiền theo phút thực tế",
+    items: [
+      { name: "Bàn Pool (Lỗ)",     desc: "Bàn tiêu chuẩn 9 feet", price: 50000, unit: "mỗi giờ", tag: "Phổ biến" },
+      { name: "Bàn Carom 3 Băng",  desc: "Bàn thi đấu, nỉ cao cấp", price: 60000, unit: "mỗi giờ" },
+      { name: "Bàn Libre",         desc: "Phù hợp chơi giao lưu", price: 45000, unit: "mỗi giờ" },
+    ],
+  },
+  {
+    id: "ca-phe", title: "Cà Phê", sub: "Pha phin truyền thống", icon: "i-coffee",
+    items: [
+      { name: "Cà phê đen đá",  price: 15000 },
+      { name: "Cà phê sữa đá",  price: 18000 },
+      { name: "Bạc xỉu",        price: 22000 },
+      { name: "Cà phê muối",    price: 25000, tag: "Bán chạy", desc: "Lớp kem muối béo mặn đặc trưng" },
+    ],
+  },
+  {
+    id: "tra", title: "Trà & Nước Ép", sub: "Tươi mát mỗi ngày", icon: "i-glass",
+    items: [
+      { name: "Trà chanh",        price: 15000 },
+      { name: "Trà tắc",          price: 15000 },
+      { name: "Trà đào cam sả",   price: 30000, tag: "Bán chạy" },
+      { name: "Nước cam vắt",     price: 30000 },
+      { name: "Nước chanh dây",   price: 25000 },
+    ],
+  },
+  {
+    id: "giai-khat", title: "Giải Khát", sub: "Nước ngọt & tăng lực", icon: "i-can",
+    items: [
+      { name: "Nước suối",                 price: 10000 },
+      { name: "Coca-Cola / Pepsi / 7Up",   price: 15000 },
+      { name: "Sting / Number 1",          price: 15000 },
+      { name: "Red Bull",                  price: 20000 },
+    ],
+  },
+  {
+    id: "bia", title: "Bia", sub: "Ướp lạnh", icon: "i-beer",
+    items: [
+      { name: "Bia Sài Gòn",  price: 20000 },
+      { name: "Tiger Bạc",    price: 25000 },
+      { name: "Heineken",     price: 30000 },
+    ],
+  },
+  {
+    id: "do-an", title: "Đồ Ăn Nhẹ", sub: "Nhâm nhi giữa ván", icon: "i-bowl",
+    items: [
+      { name: "Mì tôm trứng",      price: 25000 },
+      { name: "Mì xào bò",         price: 40000, tag: "Bán chạy" },
+      { name: "Khô gà lá chanh",   price: 40000 },
+      { name: "Hướng dương",       price: 15000 },
+      { name: "Đậu phộng rang",    price: 15000 },
+    ],
+  },
+];
+/* ============================ HẾT PHẦN SỬA ============================ */
+
+(function () {
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const money = (n) => Number(n).toLocaleString("vi-VN") + '<span class="cur">đ</span>';
+  const icon = (id) => `<svg aria-hidden="true"><use href="#${id}"/></svg>`;
+  const tel = CLUB.hotline ? "tel:" + CLUB.hotline.replace(/[^\d+]/g, "") : "";
+
+  // Thông tin nhanh trên đầu trang
+  const chips = [];
+  if (CLUB.hours) chips.push(`<span class="chip">${icon("i-clock")}${esc(CLUB.hours)}</span>`);
+  if (CLUB.hotline) chips.push(`<a class="chip" href="${tel}">${icon("i-phone")}${esc(CLUB.hotline)}</a>`);
+  document.getElementById("chips").innerHTML = chips.join("");
+
+  // Thanh danh mục
+  document.getElementById("nav").innerHTML = MENU.map(
+    (s) => `<a class="tab" href="#${s.id}" data-id="${s.id}">${esc(s.title)}</a>`
+  ).join("");
+
+  // Các mục menu
+  document.getElementById("menu").innerHTML = MENU.map((s) => {
+    const head = `
+      <div class="sec-head">
+        <span class="sec-icon">${icon(s.icon)}</span>
+        <div><h2 class="sec-title">${esc(s.title)}</h2>${s.sub ? `<p class="sec-sub">${esc(s.sub)}</p>` : ""}</div>
+      </div>`;
+    const tag = (it) => (it.tag ? `<span class="tag">${esc(it.tag)}</span>` : "");
+    const body = s.layout === "rates"
+      ? `<div class="rates">${s.items.map((it) => `
+          <div class="rate">
+            <div>
+              <h3 class="rate-name">${esc(it.name)}${tag(it)}</h3>
+              ${it.desc ? `<p class="desc">${esc(it.desc)}</p>` : ""}
+            </div>
+            <div class="rate-price">${money(it.price)}<span class="rate-unit">${esc(it.unit || "mỗi giờ")}</span></div>
+          </div>`).join("")}</div>`
+      : `<ul class="items">${s.items.map((it) => `
+          <li class="item">
+            <div class="row"><span class="name">${esc(it.name)}</span>${tag(it)}<span class="leader"></span><span class="price">${money(it.price)}</span></div>
+            ${it.desc ? `<p class="desc">${esc(it.desc)}</p>` : ""}
+          </li>`).join("")}</ul>`;
+    return `<section class="section" id="${s.id}">${head}${body}${s.note ? `<p class="note">${esc(s.note)}</p>` : ""}</section>`;
+  }).join("");
+
+  // Thông tin cuối trang
+  const info = [];
+  if (CLUB.address) info.push(`<li>${icon("i-pin")}<span>${esc(CLUB.address)}</span></li>`);
+  if (CLUB.hours) info.push(`<li>${icon("i-clock")}<span>Mở cửa ${esc(CLUB.hours)} hằng ngày</span></li>`);
+  if (CLUB.hotline) info.push(`<li>${icon("i-phone")}<span>Hotline: <a href="${tel}">${esc(CLUB.hotline)}</a></span></li>`);
+  if (CLUB.zalo) info.push(`<li>${icon("i-chat")}<span>Zalo: <a href="${esc(CLUB.zalo)}" target="_blank" rel="noopener">Nhắn tin cho quán</a></span></li>`);
+  document.getElementById("info").innerHTML = info.join("");
+
+  // Tô sáng danh mục đang xem khi cuộn
+  const nav = document.getElementById("nav");
+  const tabs = [...nav.querySelectorAll(".tab")];
+  const setActive = (id) => {
+    tabs.forEach((t) => {
+      const on = t.dataset.id === id;
+      t.classList.toggle("active", on);
+      if (on) {
+        nav.scrollTo({ left: t.offsetLeft - (nav.clientWidth - t.offsetWidth) / 2, behavior: "smooth" });
+      }
+    });
+  };
+  const sections = [...document.querySelectorAll(".section")];
+  let current = "", ticking = false;
+  const spy = () => {
+    ticking = false;
+    const line = nav.parentElement.getBoundingClientRect().bottom + 24;
+    let id = sections[0].id;
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) id = s.id;
+    const last = sections[sections.length - 1];
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2 && last.getBoundingClientRect().top < innerHeight) id = last.id;
+    if (id !== current) { current = id; setActive(id); }
+  };
+  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, { passive: true });
+  addEventListener("resize", spy);
+  spy();
+})();
+</script>
+</body>
+</html>
